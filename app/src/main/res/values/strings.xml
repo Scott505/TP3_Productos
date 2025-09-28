@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TP3_Productos</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">TP Productos</string>
+    <string name="nav_header_subtitle">App TP3 Moviles</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_cargar">Cargar</string>
+    <string name="menu_listar">Listar</string>
+    <string name="menu_salir">Salir</string>
+</resources>
