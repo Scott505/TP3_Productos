@@ -13,6 +13,10 @@ public class Producto {
         this.precio = precio;
     }
 
+    public Producto(int codigoInt) {
+        this.codigo = codigoInt;
+    }
+
     public int getCodigo() {
         return codigo;
     }
