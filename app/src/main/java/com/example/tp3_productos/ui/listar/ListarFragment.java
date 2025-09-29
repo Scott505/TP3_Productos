@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.example.tp3_productos.ProductoAdapter;
 import com.example.tp3_productos.databinding.FragmentListarBinding;
 import com.example.tp3_productos.ui.modelo.Producto;
 
@@ -40,7 +39,12 @@ public class ListarFragment extends Fragment {
            }
        });
         viewModel.cargarLista();
-
         return root;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binding = null;
     }
 }

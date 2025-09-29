@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -24,10 +25,20 @@ public class CargarFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        CargarViewModel cargarViewModel = new ViewModelProvider(this).get(CargarViewModel.class);
+        cargarViewModel = new ViewModelProvider(this).get(CargarViewModel.class);
 
         binding = FragmentCargarBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        cargarViewModel.getMensaje().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String mensaje) {
+                Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
+                binding.codigo.setText("");
+                binding.descripcion.setText("");
+                binding.precio.setText("");
+            }
+        });
 
         binding.btCargar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,32 +47,7 @@ public class CargarFragment extends Fragment {
                 String descripcion = binding.descripcion.getText().toString();
                 String precio = binding.precio.getText().toString();
 
-                if (codigo.isEmpty() || descripcion.isEmpty() || precio.isEmpty()) {
-                    Toast.makeText(getContext(), "Complete todos los campos", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                int codigoInt;
-                double precioDb;
-
-                try {
-                    codigoInt = Integer.parseInt(codigo);
-                    precioDb = Double.parseDouble(precio);
-                } catch (NumberFormatException e) {
-                    Toast.makeText(requireContext(), "Código o precio inválidos", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                Producto nuevo = new Producto(codigoInt, descripcion, precioDb);
-
-                boolean agregado = cargarViewModel.cargarProducto(nuevo);
-
-                if (agregado) {
-                    Toast.makeText(requireContext(), "Producto agregado", Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(v).navigate(R.id.nav_cargar); // o a la lista
-                } else {
-                    Toast.makeText(requireContext(), "El código ya existe", Toast.LENGTH_SHORT).show();
-                }
+                cargarViewModel.cargarProducto(codigo, descripcion, precio);
 
                 Navigation.findNavController(v).navigate(R.id.nav_cargar);
 

@@ -34,7 +34,7 @@ public class SalirFragment extends Fragment {
             @Override
             public void onChanged(Boolean salir) {
                 if (salir != null && salir) {
-                    requireActivity().finishAffinity(); // cerrar app
+                    requireActivity().finishAffinity();
                 }
             }
         });

@@ -1,4 +1,4 @@
-package com.example.tp3_productos;
+package com.example.tp3_productos.ui.listar;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tp3_productos.R;
 import com.example.tp3_productos.ui.modelo.Producto;
 
 import java.util.List;

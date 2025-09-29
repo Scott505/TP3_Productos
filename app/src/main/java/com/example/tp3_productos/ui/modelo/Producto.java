@@ -1,5 +1,7 @@
 package com.example.tp3_productos.ui.modelo;
 
+import androidx.annotation.Nullable;
+
 public class Producto {
     private int codigo;
     private String descripcion;
@@ -33,5 +35,22 @@ public class Producto {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (!(obj instanceof Producto)){
+            return false;
+        }
+        Producto p = (Producto) obj;
+        if (this.codigo == p.getCodigo()){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return codigo;
     }
 }
